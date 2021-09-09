@@ -14,8 +14,10 @@ function generate() {
 
 function askYesOrNoQuestion(question) {
   while (true) {
-    var input = prompt(question);
-    if (input === "yes" || input === "no") {
+    var input = prompt(question).toLowerCase();
+    if (input === null) {
+      return;
+    } else if (input === "yes" || input === "no") {
       return input;
     } else {
       alert("Please enter a valid answer");
@@ -26,7 +28,9 @@ function askYesOrNoQuestion(question) {
 function getPasswordLength() {
   while (true) {
     var input = prompt("How many characters would you like? (Must be between 8 and 128 characters)");
-    if (input >= 8 && input <= 128) {
+    if (input === null) {
+      return;
+    } else if (input >= 8 && input <= 128) {
       return input;
     } else {
       alert("Please enter a number between 8 and 128")
@@ -37,7 +41,7 @@ function getPasswordLength() {
 function generateString() {
   let result = '';
   const length = getPasswordLength();
-  const numeric = askYesOrNoQuestion("Would you like numeric characters?");
+  const numeric = askYesOrNoQuestion("Would you like numeric characters? (Yes/No)");
   const upper = askYesOrNoQuestion("Would you like upper case characters?");
   const lower = askYesOrNoQuestion("Would you like lower case characters?");
   const special = askYesOrNoQuestion("Would you like special characters?");
